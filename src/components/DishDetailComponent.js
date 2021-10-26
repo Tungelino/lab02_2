@@ -10,20 +10,21 @@ class DishDetail extends Component {
         super(props)
     }
     render() {
-        const { selectedDish } = this.props
+        const { dish } = this.props
+        console.log(dish)
 
-        const Detail = selectedDish ?
+        const Detail = dish ?
             (<div >
                 <Card>
-                    <CardImg top src={selectedDish.image} alt={selectedDish.name} />
+                    <CardImg top src={dish.image} alt={dish.name} />
                     <CardBody>
-                        <CardTitle>{selectedDish.name}</CardTitle>
-                        <CardText>{selectedDish.description}</CardText>
+                        <CardTitle>{dish.name}</CardTitle>
+                        <CardText>{dish.description}</CardText>
                     </CardBody>
                 </Card>
             </div>) : null
-        const Comment = selectedDish ?
-            (selectedDish.comments.map((a) => {
+        const Comment = dish ?
+            (dish.comments.map((a) => {
                 return <div>
                     <p>{a.comment}</p>
                     <span>{new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit' }).format(new Date(Date.parse(a.date)))}</span>
@@ -41,9 +42,7 @@ class DishDetail extends Component {
                     {Comment}
                 </div>
             </div>
-
         )
-
     }
 }
 export default DishDetail;
