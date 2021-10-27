@@ -14,28 +14,35 @@ function RenderMenuItem({ dish, onClick }) {
         </div>
     )
 }
-
-
 function Menu() {
     const [dish, setDish] = useState()
     // const [detail, setDetail] = useState()
     const handleRenderDish = (dish) => {
 
         setDish(
-            <Card>
-                <CardImg width='100%' src={dish.image} alt={dish.name} />
-                <CardBody>
-                    <CardTitle>{dish.name}</CardTitle>
-                    <CardText>{dish.description}</CardText>
-                </CardBody>
-            </Card>
+            <div className='row'>
+                <Card className='col-12 col-md-5 m-1'>
+                    <CardImg width='100%' src={dish.image} alt={dish.name} />
+                    <CardBody>
+                        <CardTitle>{dish.name}</CardTitle>
+                        <CardText>{dish.description}</CardText>
+                    </CardBody>
+                </Card>
+                <div className='col-12 col-md-5 m-1'>
+                    {dish.comments.map((comment) =>
+                        <div>
+                            <p>{comment.comment}</p>
+                            <span>{new Intl.DateTimeFormat(
+                                'en-US', { year: 'numeric', month: 'short', day: '2-digit' }
+                            ).format(new Date(Date.parse(comment.date)))}</span>
+                            <span>{comment.author}</span>
+                        </div>)}
+                </div>
 
+            </div>
         )
-
-
-
-
     }
+
     return (
         <div className='container'>
             <div className='row'>
@@ -47,8 +54,8 @@ function Menu() {
                 />))
                 }
             </div>
-            <div className='row'>
-                <div className='col-12 col-md-5 m-1'>{dish || ''}</div>
+            <div >
+                {dish || ''}
             </div>
         </div>)
 }
