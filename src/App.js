@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 
 
 import Main from './components/MainComponent';
-// import './App.css';
+import './App.css';
 // import { DISHES } from './shared/dishes';
 
 
