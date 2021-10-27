@@ -11,7 +11,7 @@ class DishDetail extends Component {
     }
     render() {
         const { dish } = this.props
-        console.log(dish)
+
 
         const Detail = dish ?
             (<div >
