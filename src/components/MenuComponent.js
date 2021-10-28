@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle, ListGroup } from 'reactstrap';
 import { DISHES } from "../shared/dishes";
+import { COMMENTS } from "../shared/comments";
+
 
 function RenderMenuItem({ dish, onClick }) {
     return (
