@@ -1,63 +1,46 @@
-import React, { useState } from "react";
-import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle, ListGroup } from 'reactstrap';
-import { DISHES } from "../shared/dishes";
-import { COMMENTS } from "../shared/comments";
+import React from "react";
+import { Card, CardImg, CardImgOverlay, CardTitle, Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import { Link } from 'react-router-dom'
 
-
-function RenderMenuItem({ dish, onClick }) {
+function RenderMenuItem({ dish }) {
     return (
-        <div key={dish.id} className='col-12 col-md-5 m-1'>
-            <Card onClick={() => onClick(dish)}>
+        <Card>
+            <Link to={`/menu/${dish.id}`}>
                 <CardImg src={dish.image} width='100%' alt={dish.name} />
                 <CardImgOverlay>
                     <CardTitle>{dish.name}</CardTitle>
                 </CardImgOverlay>
-            </Card>
-        </div>
+            </Link>
+        </Card>
     )
 }
-function Menu() {
-    const [dish, setDish] = useState()
-    // const [detail, setDetail] = useState()
-    const handleRenderDish = (dish) => {
-
-        setDish(
-            <div className='row'>
-                <Card className='col-12 col-md-5 m-1'>
-                    <CardImg width='100%' src={dish.image} alt={dish.name} />
-                    <CardBody>
-                        <CardTitle>{dish.name}</CardTitle>
-                        <CardText>{dish.description}</CardText>
-                    </CardBody>
-                </Card>
-                <div className='col-12 col-md-5 m-1'>
-                    {dish.comments.map((comment) =>
-                        <div>
-                            <p>{comment.comment}</p>
-                            <span>{new Intl.DateTimeFormat(
-                                'en-US', { year: 'numeric', month: 'short', day: '2-digit' }
-                            ).format(new Date(Date.parse(comment.date)))}</span>
-                            <span>{comment.author}</span>
-                        </div>)}
-                </div>
-
+const Menu = (props) => {
+    const menu = props.dishes.map((dish) => {
+        return (
+            <div key={dish.id} className='col-12 col-md-5 m-1'>
+                <RenderMenuItem dish={dish}
+                />
             </div>
         )
-    }
-
+    })
     return (
         <div className='container'>
             <div className='row'>
-                {DISHES.map(dish =>
-                (<RenderMenuItem
-                    key={dish.id}
-                    dish={dish}
-                    onClick={handleRenderDish}
-                />))
-                }
+                <Breadcrumb>
+                    <BreadcrumbItem>
+                        <Link to='/home'>Home</Link>
+                    </BreadcrumbItem>
+                    <BreadcrumbItem active>
+                        Menu
+                    </BreadcrumbItem>
+                </Breadcrumb>
+                <div className='col-12'>
+                    <h3>Menu</h3>
+                    <hr />
+                </div>
             </div>
-            <div >
-                {dish || ''}
+            <div className='row'>
+                {menu}
             </div>
         </div>)
 }
