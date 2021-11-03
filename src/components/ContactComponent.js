@@ -48,20 +48,20 @@ class Contact extends Component {
         })
     }
 
-    validate(firstnam, lastname, telnum, email) {
+    validate(firstname, lastname, telnum, email) {
         const errors = {
             firstname: '',
             lastname: '',
             telnum: '',
             email: ''
         }
-        if (this.state.touched.firstname && firstnam.length < 3)
+        if (this.state.touched.firstname && firstname.length <= 3)
             errors.firstname = 'First Name shoule be >= 3 characters'
-        else if (this.state.touched.firstname && firstnam.length > 3)
+        else if (this.state.touched.firstname && firstname.length >= 10)
             errors.firstname = 'First Name shoule be <= 10 characters'
         if (this.state.touched.lastname && lastname.length < 3)
             errors.lastname = 'Last Name shoule be >= 3 characters'
-        else if (this.state.touched.lastname && lastname.length > 3)
+        else if (this.state.touched.lastname && lastname.length >= 10)
             errors.lastname = 'Last Name shoule be <= 10 characters'
 
         const reg = /^\d+$/
