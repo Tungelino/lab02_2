@@ -35,7 +35,6 @@ class Header extends Component {
             + 'Remember: ' + this.remember.checked)
 
         event.preventDefault()
-
     }
     render() {
         return (
@@ -115,7 +114,6 @@ class Header extends Component {
                             </FormGroup>
                             <Button type='submit' value='submit' className='primary'>Login</Button>
                         </Form>
-
                     </ModalBody>
                 </Modal>
             </React.Fragment>
